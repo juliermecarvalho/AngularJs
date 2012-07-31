@@ -1,0 +1,18 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" type="text/css" href="../../Content/qunit.css" />
+</head>
+<body>
+    <div id="qunit"></div>
+	<div id="qunit-fixture">test markup</div>
+    @RenderBody()
+    @*lembar de verifica a porta do projeto AngularJS .web*@
+    <script type="text/javascript" src="http://localhost:2221/Scripts/jquery-1.7.2.js"></script>
+    <script type="text/javascript" src="../../Scripts/qunit.js"></script>
+      @RenderSection("script", false)
+</body>
+</html>
