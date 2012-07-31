@@ -37,9 +37,12 @@ namespace Controllers
         }
 
         // POST api/pessoa
-        public virtual void Post(DtoPessoa pessoa)
+        public virtual HttpResponseMessage Post(DtoPessoa pessoa)
         {
             _pessoaAplicacao.Salvar(pessoa);
+            var response = new HttpResponseMessage(HttpStatusCode.Created);
+            response.Headers.Location = new Uri(Request.RequestUri, "api/pessoa/" + pessoa.Id);
+            return response;
         }
 
         // PUT api/pessoa/5

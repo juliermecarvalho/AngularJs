@@ -11,7 +11,7 @@ namespace Lib
         public DbSet<Pessoa> Pessoas { get; set; } 
 
         public Contexto()
-            : base("name=Base")
+            : base("name=AngularJs")
         {
             
         }

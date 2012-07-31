@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Data;
+using System.Linq;
 using Entidades.Base;
 using Lib;
 
@@ -25,8 +26,14 @@ namespace Repositorios.Base
 
         public virtual void Salvar(TEntidade entidade)
         {
-            if(entidade.Id == 0)
+            if (entidade.Id == 0)
+            {
                 this.Contexto.Set<TEntidade>().Add(entidade);
+            }
+            else
+            {
+                this.Contexto.Entry(entidade).State = EntityState.Modified;
+            }
         }
 
         public virtual void Deletar(int id)

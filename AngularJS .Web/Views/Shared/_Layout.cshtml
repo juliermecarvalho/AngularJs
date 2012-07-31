@@ -1,13 +1,19 @@
 ﻿<!DOCTYPE html>
-<html>
+<html  >
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
+       @RenderSection("css", false)
 
 </head>
-<body>
+<body ng-app >
     @RenderBody()
+    <script type="text/javascript" src="../../Scripts/jquery-1.7.2.js"></script>
+    <script type="text/javascript" src="../../Scripts/angular.js"></script>
+    
+    
 
+    @RenderSection("script", false)
 </body>
 </html>

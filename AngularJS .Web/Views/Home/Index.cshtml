@@ -1,5 +1,59 @@
-﻿@{
+﻿@model Dtos.DtoPessoa
+
+@{
     ViewBag.Title = "Index";
 }
 
 <h2>Index</h2>
+
+<form ng-controller="homeController">
+    
+
+        
+    <input type="hidden" name="Id" id="Id" ng-model="DtoPessoa.Id"/>
+
+    <div >
+        @Html.LabelFor(model => model.Nome)
+    </div>
+    <div >
+            
+        <input name="Nome" id="Nome" ng-model="DtoPessoa.Nome"/>
+            
+    </div>
+    
+    <div >
+        @Html.LabelFor(model => model.Sexo)
+    </div>
+    <div >
+        <input name="Sexo" id="Sexo" ng-model="DtoPessoa.Sexo"/>
+    </div>
+     
+    <p>
+        <input type="submit" value="Save" ng-click="salvar()" />
+    </p>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Sexo</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="dto in dtoPessoas">
+                <td>{{dto.Id}} </td>
+                <td>{{dto.Nome}}</td>
+                <td>{{dto.Sexo}}</td>
+                <td>[ <a  ng-click="editar(dto)">editar</a>] | [ <a  ng-click="excluir(dto)">excluir</a>]</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    
+
+</form>
+@section script
+{
+    <script type="text/javascript" src="../../Scripts/Ui/home.js"></script>
+}
