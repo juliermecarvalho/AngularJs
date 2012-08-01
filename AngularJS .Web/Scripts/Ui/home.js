@@ -2,18 +2,7 @@
 /// <reference path="../angular.js" />
 
 function homeController($scope, $window, $http) {
-
-
-    var salvar = function () {
-        $http.post('api/pessoa', $scope.dtoPessoa).success(function(data, status) {
-            if (status === 201) {
-                get();
-            }
-        }).error(function(data, status) {
-            console.log('Error: ' + status);
-        });
-    };
-
+    
     $scope.salvar = function () {
         if ($scope.formHome.$valid) {
             salvar();
@@ -35,16 +24,26 @@ function homeController($scope, $window, $http) {
         $scope.dtoPessoa = dto;
     };
 
-    function get() {
+    var get = function() {
         $scope.dtoPessoas = [];
-        $http.get('api/pessoa').success(function (data, status) {
-            $.each(data, function (i, d) {
-                $scope.dtoPessoas.push(d);
+        $http.get('api/pessoa').success(function(pessoas, status) {
+            $.each(pessoas, function (i, pessoa) {
+                $scope.dtoPessoas.push(pessoa);
             });
             reset();
         });
-    }
-
+    };
+    
+    var salvar = function () {
+        $http.post('api/pessoa', $scope.dtoPessoa).success(function (data, status) {
+            if (status === 201) {
+                get();
+            }
+        }).error(function (data, status) {
+            console.log('Error: ' + status);
+        });
+    };
+    
     var reset = function() {
         $scope.dtoPessoa = {
             Id: '',
@@ -53,13 +52,13 @@ function homeController($scope, $window, $http) {
         };
     };
 
-    var init = function() {
+    (function() {
         reset();        
         get();
        
-    };
+    })();
     
 
-    init();
+    
     
 }
