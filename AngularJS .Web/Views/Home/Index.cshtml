@@ -1,5 +1,4 @@
 ﻿@model Dtos.DtoPessoa
-
 @{
     ViewBag.Title = "Index";
 }
@@ -7,51 +6,50 @@
 <h2>Index</h2>
 
 <form name="formHome" ng-controller="homeController">
-    
 
-        
-    <input type="hidden" name="Id" id="Id" ng-model="dtoPessoa.Id"/>
 
-    <div >
-        @Html.LabelFor(model => model.Nome)
-    </div>
-    <div >
-             
-        <input name="Nome" id="Nome" ng-model="dtoPessoa.Nome" required/>
-       @* <span class="error" ng-show="formHome.Nome.$error.required" >Requerido!</span>*@
-            
-    </div>
-    
-    <div >
-        @Html.LabelFor(model => model.Sexo)
-    </div>
-    <div >
-        <input type="radio" name="Sexo" value="0" ng-model="dtoPessoa.Sexo" required/>Masculino
-        <input type="radio" name="Sexo" value="1" ng-model="dtoPessoa.Sexo" required/>Feminino
-    </div>
-     
-    <p>
-        <input type="submit" value="Save" ng-click="salvar(this)" />
-    </p>
-    
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nome</th>
-                <th>Sexo</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="dto in dtoPessoas">
-                <td>{{dto.Id}} </td>
-                <td>{{dto.Nome}}</td>
-                <td>{{dto.Sexo}}</td>
-                <td>[ <a  ng-click="editar(dto)">editar</a>] | [ <a  ng-click="excluir(dto)">excluir</a>]</td>
-            </tr>
-        </tbody>
-    </table>
-    
+
+            <input type="hidden" name="Id" id="Id" ng-model="dtoPessoa.Id" />
+
+            <div>
+                @Html.LabelFor(model => model.Nome)
+            </div>
+            <div>
+
+                <input name="Nome" id="Nome" ng-model="dtoPessoa.Nome" required />
+                @* <span class="error" ng-show="formHome.Nome.$error.required" >Requerido!</span>*@
+            </div>
+
+            <div>
+                @Html.LabelFor(model => model.Sexo)
+            </div>
+            <div>
+                <input type="radio" name="Sexo" value="0" ng-model="dtoPessoa.Sexo" required />Masculino
+                <input type="radio" name="Sexo" value="1" ng-model="dtoPessoa.Sexo" required />Feminino
+            </div>
+
+            <p>
+                <input type="submit" value="Save" ng-click="salvar(this)" />
+            </p>
+
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nome</th>
+                            <th>Sexo</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="dto in dtoPessoas">
+                            <td>{{dto.Id}} </td>
+                            <td>{{dto.Nome}}</td>
+                            <td>{{dto.Sexo}}</td>
+                            <td>[ <a ng-click="editar(dto)">editar</a>] | [ <a ng-click="excluir(dto)">excluir</a>]</td>
+                        </tr>
+                    </tbody>
+                </table>
     
 
 </form>

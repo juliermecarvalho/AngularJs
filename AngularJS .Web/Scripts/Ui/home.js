@@ -1,7 +1,7 @@
 ﻿/// <reference path="../jquery-1.7.2.js" />
 /// <reference path="../angular.js" />
 
-function homeController($scope, $window, $http) {
+var homeController = function ($scope, $window, $http) {
     
     $scope.salvar = function () {
         if ($scope.formHome.$valid) {
