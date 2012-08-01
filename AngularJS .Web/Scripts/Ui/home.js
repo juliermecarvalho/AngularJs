@@ -22,7 +22,9 @@ function homeController($scope, $window, $http) {
 
     $scope.excluir = function(dto) {
         $http.delete('/api/pessoa/' + dto.Id).success(function (data, status) {
-            get();
+            if (status === 200) {
+                get();
+            }
         }).error(function(data, status) {
             console.log('Error: ' + status);
         });
