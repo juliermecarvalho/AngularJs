@@ -75,25 +75,25 @@ namespace Controllers.Teste
             mock.VerifyAll();
         }
 
-        // PUT api/pessoa/5
-        [Test]
-        public void Put_teste()
-        {
-            //Arange
-            var mock = new MockRepository();
-            var aplicacao = mock.StrictMock<IPessoaAplicacao>();
-            const int id = 1;
-            var pessoa = new DtoPessoa() { Id = id };
-            PessoaController pessoaController = new PessoaController(aplicacao);
-            Expect.Call(() => aplicacao.Salvar(pessoa));
-            mock.ReplayAll();
+        //// PUT api/pessoa/5
+        //[Test]
+        //public void Put_teste()
+        //{
+        //    //Arange
+        //    var mock = new MockRepository();
+        //    var aplicacao = mock.StrictMock<IPessoaAplicacao>();
+        //    const int id = 1;
+        //    var pessoa = new DtoPessoa() { Id = id };
+        //    PessoaController pessoaController = new PessoaController(aplicacao);
+        //    Expect.Call(() => aplicacao.Salvar(pessoa));
+        //    mock.ReplayAll();
 
-            //Act
-            pessoaController.Put(pessoa);
+        //    //Act
+        //    pessoaController.Put(pessoa);
 
-            //Assert
-            mock.VerifyAll();
-        }
+        //    //Assert
+        //    mock.VerifyAll();
+        //}
 
         // DELETE api/pessoa/5
         [Test]

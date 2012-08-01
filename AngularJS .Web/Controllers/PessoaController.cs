@@ -45,16 +45,14 @@ namespace Controllers
             return response;
         }
 
-        // PUT api/pessoa/5
-        public virtual void Put(DtoPessoa pessoa)
-        {
-            _pessoaAplicacao.Salvar(pessoa);
-        }
-
+       
         // DELETE api/pessoa/5
-        public virtual void Delete(int id)
+        public virtual HttpResponseMessage Delete(int id)
         {
             _pessoaAplicacao.Deletar(id);
+            var response = new HttpResponseMessage(HttpStatusCode.OK);
+            return response;
+
         }
     }
 }

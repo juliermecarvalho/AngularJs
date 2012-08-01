@@ -6,18 +6,19 @@
 
 <h2>Index</h2>
 
-<form ng-controller="homeController">
+<form name="formHome" ng-controller="homeController">
     
 
         
-    <input type="hidden" name="Id" id="Id" ng-model="DtoPessoa.Id"/>
+    <input type="hidden" name="Id" id="Id" ng-model="dtoPessoa.Id"/>
 
     <div >
         @Html.LabelFor(model => model.Nome)
     </div>
     <div >
-            
-        <input name="Nome" id="Nome" ng-model="DtoPessoa.Nome"/>
+             
+        <input name="Nome" id="Nome" ng-model="dtoPessoa.Nome" required/>
+
             
     </div>
     
@@ -25,11 +26,12 @@
         @Html.LabelFor(model => model.Sexo)
     </div>
     <div >
-        <input name="Sexo" id="Sexo" ng-model="DtoPessoa.Sexo"/>
+        <input type="radio" name="Sexo" value="0" ng-model="dtoPessoa.Sexo" required/>
+        <input type="radio" name="Sexo" value="1" ng-model="dtoPessoa.Sexo" required/>
     </div>
      
     <p>
-        <input type="submit" value="Save" ng-click="salvar()" />
+        <input type="submit" value="Save" ng-click="salvar(this)" />
     </p>
     
     <table>
