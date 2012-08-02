@@ -1,0 +1,39 @@
+﻿@using System.Reflection
+@model string
+@{
+    Layout = null;
+
+    string style = string.Empty;
+    string classe = string.Empty;
+    string tabindex = string.Empty;    
+    string placeholder = ViewData.ModelMetadata.DisplayName;
+    
+
+    // Definição dos atributos Html
+    {
+        if (ViewData["style"] != null)
+        {
+            style = ViewData["style"].ToString();
+        }
+
+        if (ViewData["classe"] != null)
+        {
+            classe = ViewData["classe"].ToString();
+        }
+
+        if (ViewData["tabindex"] != null)
+        {
+            tabindex = ViewData["tabindex"].ToString();
+        }       
+        if (ViewData["placeholder"] != null)
+        {
+            placeholder = ViewData["placeholder"].ToString();
+        }
+       
+
+    }
+}
+<!-- Editor String -->
+@Html.LabelFor(model => model)
+@Html.TextBoxFor(model => model, new { style, @class = classe, tabindex, @placeholder, @ng_model= ViewData.ModelMetadata.ContainerType.Name + "." +ViewData.ModelMetadata.PropertyName})
+@Html.ValidationMessageFor(model => model)

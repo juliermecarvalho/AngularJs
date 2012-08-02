@@ -9,14 +9,13 @@
 
 
 
-            <input type="hidden" name="Id" id="Id" ng-model="dtoPessoa.Id" />
+
+           @Html.HiddenFor(model => model.Id)
 
             <div>
-                @Html.LabelFor(model => model.Nome)
-            </div>
-            <div>
 
-                <input name="Nome" id="Nome" ng-model="dtoPessoa.Nome" required />
+                
+                @Html.EditorFor(model => model.Nome)
                 @* <span class="error" ng-show="formHome.Nome.$error.required" >Requerido!</span>*@
             </div>
 
@@ -24,8 +23,8 @@
                 @Html.LabelFor(model => model.Sexo)
             </div>
             <div>
-                <input type="radio" name="Sexo" value="0" ng-model="dtoPessoa.Sexo" required />Masculino
-                <input type="radio" name="Sexo" value="1" ng-model="dtoPessoa.Sexo" required />Feminino
+                <input type="radio" name="Sexo" value="0" ng-model="DtoPessoa.Sexo" required />Masculino
+                <input type="radio" name="Sexo" value="1" ng-model="DtoPessoa.Sexo" required />Feminino
             </div>
 
             <p>
@@ -42,10 +41,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="dto in dtoPessoas">
+                        <tr ng-repeat="dto in DtoPessoas">
                             <td>{{dto.Id}} </td>
                             <td>{{dto.Nome}}</td>
-                            <td>{{dto.Sexo}}</td>
+                            <td>{{ (dto.Sexo === 0)  'Masculino'   }}</td>
                             <td>[ <a ng-click="editar(dto)">editar</a>] | [ <a ng-click="excluir(dto)">excluir</a>]</td>
                         </tr>
                     </tbody>

@@ -4,9 +4,9 @@
 var homeController = function ($scope, $window, $http) {
     
     $scope.salvar = function () {
-        if ($scope.formHome.$valid) {
+        if ($('from').valid()) {
             salvar();
-        }
+        } 
     };
 
     $scope.excluir = function(dto) {
@@ -21,21 +21,21 @@ var homeController = function ($scope, $window, $http) {
     };
 
     $scope.editar = function(dto) {
-        $scope.dtoPessoa = dto;
+        $scope.DtoPessoa = dto;
     };
 
     var get = function() {
-        $scope.dtoPessoas = [];
+        $scope.DtoPessoas = [];
         $http.get('api/pessoa').success(function(pessoas, status) {
             $.each(pessoas, function (i, pessoa) {
-                $scope.dtoPessoas.push(pessoa);
+                $scope.DtoPessoas.push(pessoa);
             });
             reset();
         });
     };
     
     var salvar = function () {
-        $http.post('api/pessoa', $scope.dtoPessoa).success(function (data, status) {
+        $http.post('api/pessoa', $scope.DtoPessoa).success(function (data, status) {
             if (status === 201) {
                 get();
             }
@@ -45,7 +45,7 @@ var homeController = function ($scope, $window, $http) {
     };
     
     var reset = function() {
-        $scope.dtoPessoa = {
+        $scope.DtoPessoa = {
             Id: '',
             Nome: '',
             Sexo: ''
@@ -55,10 +55,11 @@ var homeController = function ($scope, $window, $http) {
     (function() {
         reset();        
         get();
-       
+        
     })();
     
 
     
     
 }
+

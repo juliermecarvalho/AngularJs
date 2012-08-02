@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using Dtos;
 
 namespace Controllers
 {
@@ -9,7 +10,7 @@ namespace Controllers
         
         public ActionResult Index()
         {
-            return View();
+            return View( new DtoPessoa());
         }
 
     }
