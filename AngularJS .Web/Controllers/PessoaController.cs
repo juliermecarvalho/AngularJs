@@ -41,7 +41,7 @@ namespace Controllers
         {
             _pessoaAplicacao.Salvar(pessoa);
             var response = new HttpResponseMessage(HttpStatusCode.Created);
-            response.Headers.Location = new Uri(Request.RequestUri, "api/pessoa/" + pessoa.Id);
+            //response.Headers.Location = new Uri(Request.RequestUri, "api/pessoa/" + pessoa.Id);
             return response;
         }
 

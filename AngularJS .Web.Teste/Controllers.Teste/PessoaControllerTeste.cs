@@ -69,9 +69,11 @@ namespace Controllers.Teste
             mock.ReplayAll();
 
             //Act
-            pessoaController.Post(pessoa);
+            var retorno = pessoaController.Post(pessoa);
 
             //Assert
+            Assert.AreEqual("Created", retorno.ReasonPhrase);
+            Assert.IsTrue(retorno.IsSuccessStatusCode);
             mock.VerifyAll();
         }
 
