@@ -36,11 +36,11 @@ namespace ContextoPessoa
         {
             var lista = _repositorioDePessoas.Listar().Select(p => new DtoPessoa
                 {
-                   Id = p.Id,
-                   Nome = p.Nome,
-                   Sexo = (int) p.Sexo,
-                   DescricaoSexo = p.Sexo == Sexo.Masculino ? "Masculino" : "Feminino"
-                });
+                    Id = p.Id,
+                    Nome = p.Nome,
+                    Sexo = (int) p.Sexo,
+                    DescricaoSexo = p.Sexo == Sexo.Masculino ? "Masculino" : "Feminino"
+                }).ToList();
             return lista;
         }
 
