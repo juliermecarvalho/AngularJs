@@ -4,6 +4,7 @@ using System.Linq;
 using BindDominoDto;
 using ContextoPessoa.Base;
 using Dtos;
+using Enumerados;
 using Lib;
 using Repositorios;
 
@@ -33,9 +34,13 @@ namespace ContextoPessoa
 
         public virtual IEnumerable<DtoPessoa> ListaDt0Pessoas()
         {
-            var lista = _repositorioDePessoas.Listar().Select(p =>_pessoaMapper.Mapeamento(p));
-            
-
+            var lista = _repositorioDePessoas.Listar().Select(p => new DtoPessoa
+                {
+                   Id = p.Id,
+                   Nome = p.Nome,
+                   Sexo = (int) p.Sexo,
+                   DescricaoSexo = p.Sexo == Sexo.Masculino ? "Masculino" : "Feminino"
+                });
             return lista;
         }
 

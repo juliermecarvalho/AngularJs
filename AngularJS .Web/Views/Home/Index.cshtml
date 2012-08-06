@@ -23,8 +23,8 @@
                 @Html.LabelFor(model => model.Sexo)
             </div>
             <div>
-                <input type="radio" name="Sexo" value="0" ng-model="DtoPessoa.Sexo" required />Masculino
-                <input type="radio" name="Sexo" value="1" ng-model="DtoPessoa.Sexo" required />Feminino
+                <input type="radio" name="Sexo" value="0" ng-model="DtoPessoa.Sexo"  />Masculino
+                <input type="radio" name="Sexo" value="1" ng-model="DtoPessoa.Sexo"  />Feminino
             </div>
 
             <p>
@@ -44,7 +44,7 @@
                         <tr ng-repeat="dto in DtoPessoas">
                             <td>{{dto.Id}} </td>
                             <td>{{dto.Nome}}</td>
-                            <td>{{ (dto.Sexo === 0)  'Masculino'   }}</td>
+                            <td>{{ dto.DescricaoSexo   }}</td>
                             <td>[ <a ng-click="editar(dto)">editar</a>] | [ <a ng-click="excluir(dto)">excluir</a>]</td>
                         </tr>
                     </tbody>

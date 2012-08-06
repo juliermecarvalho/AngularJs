@@ -4,7 +4,7 @@
 var homeController = function ($scope, $window, $http) {
     
     $scope.salvar = function () {
-        if ($('from').valid()) {
+        if ($('form').valid()) {
             salvar();
         } 
     };
@@ -20,7 +20,8 @@ var homeController = function ($scope, $window, $http) {
       
     };
 
-    $scope.editar = function(dto) {
+    $scope.editar = function (dto) {
+        console.log(dto);
         $scope.DtoPessoa = dto;
     };
 
@@ -48,13 +49,15 @@ var homeController = function ($scope, $window, $http) {
         $scope.DtoPessoa = {
             Id: '',
             Nome: '',
-            Sexo: ''
+            Sexo: '',
+            DescricaoSexo: ''
         };
     };
 
     (function() {
         reset();        
         get();
+        
         
     })();
     

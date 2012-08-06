@@ -10,5 +10,6 @@ namespace Dtos
         public string Nome { get; set; }
         [Required(ErrorMessage = "Campo Obrigatório")]
         public int Sexo { get; set; }
+        public string DescricaoSexo { get; set; }
     }
 }

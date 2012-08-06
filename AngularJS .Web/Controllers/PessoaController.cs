@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using ContextoPessoa;
 using ContextoPessoa.Base;
 using Dtos;
-using Entidades;
-using Repositorios;
 
 namespace Controllers
 {
