@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using BindDominoDto;
 using ContextoPessoa.Base;
 using Dtos;
 using Entidades;
@@ -22,7 +21,9 @@ namespace ContextoPessoa.Teste
             //Arange
             var mock = new MockRepository();
             var repositorio = mock.StrictMock<IRepositorioDePessoas>();
-            IPessoaAplicacao pessoaAplicacao = new PessoaAplicacao(repositorio, null);
+            var mapper = mock.Stub<PessoaMapper>();
+
+            IPessoaAplicacao pessoaAplicacao = new PessoaAplicacao(repositorio, null, mapper);
 
             IQueryable<Pessoa> lista = new List<Pessoa>().AsQueryable();
             
@@ -43,11 +44,15 @@ namespace ContextoPessoa.Teste
             //Arange
             var mock = new MockRepository();
             var repositorio = mock.StrictMock<IRepositorioDePessoas>();
-            IPessoaAplicacao pessoaAplicacao = new PessoaAplicacao(repositorio, null);
+            var mapper = mock.Stub<PessoaMapper>();
+
+            IPessoaAplicacao pessoaAplicacao = new PessoaAplicacao(repositorio, null, mapper);
 
             const int id = 1;
             var pessoa = new Pessoa {Id = id};
+            var dtoPessoa = new DtoPessoa {Id = id};
             Expect.Call(repositorio.Obter(id)).Return(pessoa);
+            Expect.Call(mapper.Mapeamento(pessoa)).Return(dtoPessoa);
             mock.ReplayAll();
 
             //Act
@@ -65,11 +70,13 @@ namespace ContextoPessoa.Teste
             var mock = new MockRepository();
             var repositorio = mock.StrictMock<IRepositorioDePessoas>();
             var unidadeDeTrabalho = mock.StrictMock<IUnidadeDeTrabalho>();
-            IPessoaAplicacao pessoaAplicacao = new PessoaAplicacao(repositorio, unidadeDeTrabalho);
+            var mapper = mock.Stub<PessoaMapper>();
+            IPessoaAplicacao pessoaAplicacao = new PessoaAplicacao(repositorio, unidadeDeTrabalho, mapper);
             var pessoa = new Pessoa();
             var dtoPessoa = new DtoPessoa();
             Expect.Call(unidadeDeTrabalho.Commit);
-            Expect.Call(() => repositorio.Salvar(pessoa)).IgnoreArguments();
+            Expect.Call(() => repositorio.Salvar(pessoa));
+            Expect.Call(mapper.Mapeamento(dtoPessoa)).Return(pessoa);
             mock.ReplayAll();
 
             //Act
@@ -78,6 +85,7 @@ namespace ContextoPessoa.Teste
             //Assert            
             mock.VerifyAll();
         }
+
         [Test]
         [ExpectedException(typeof(Exception))]
         public void Salvar_recebendo_null()
@@ -85,7 +93,7 @@ namespace ContextoPessoa.Teste
             //Arange
             var mock = new MockRepository();
             var repositorio = mock.StrictMock<IRepositorioDePessoas>();
-            IPessoaAplicacao pessoaAplicacao = new PessoaAplicacao(repositorio, null);
+            IPessoaAplicacao pessoaAplicacao = new PessoaAplicacao(repositorio, null, null);
             var pessoa = new Pessoa();
             
             Expect.Call(() => repositorio.Salvar(pessoa));
@@ -105,7 +113,7 @@ namespace ContextoPessoa.Teste
             var mock = new MockRepository();
             var repositorio = mock.StrictMock<IRepositorioDePessoas>();
             var unidadeDeTrabalho = mock.StrictMock<IUnidadeDeTrabalho>();
-            IPessoaAplicacao pessoaAplicacao = new PessoaAplicacao(repositorio, unidadeDeTrabalho);
+            IPessoaAplicacao pessoaAplicacao = new PessoaAplicacao(repositorio, unidadeDeTrabalho, null);
             const int id = 1;
             Expect.Call(unidadeDeTrabalho.Commit);           
             Expect.Call(() => repositorio.Deletar(id));

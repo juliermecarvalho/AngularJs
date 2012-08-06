@@ -1,8 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Dtos.Base;
 
 namespace Dtos
 {
-    public class DtoPessoa
+    public class DtoPessoa: IDto
     {
         public int Id { get; set; }
         [Required(ErrorMessage = "Campo Obrigatório")]

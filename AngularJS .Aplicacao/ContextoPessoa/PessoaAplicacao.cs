@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using BindDominoDto;
 using ContextoPessoa.Base;
 using Dtos;
-using Entidades;
-using Enumerados;
 using Lib;
 using Repositorios;
 
@@ -16,27 +15,25 @@ namespace ContextoPessoa
     {
         private readonly IRepositorioDePessoas _repositorioDePessoas;
         private readonly IUnidadeDeTrabalho _unidadeDeTrabalho;
+        private readonly PessoaMapper _pessoaMapper;
 
         public PessoaAplicacao()
         {
             _unidadeDeTrabalho = Fabrica.Instancia.Obter<IUnidadeDeTrabalho>();
             _repositorioDePessoas = Fabrica.Instancia.Obter<IRepositorioDePessoas>(_unidadeDeTrabalho);
+            _pessoaMapper = new PessoaMapper();
         }
 
-        public PessoaAplicacao(IRepositorioDePessoas repositorioDePessoas, IUnidadeDeTrabalho unidadeDeTrabalho)
+        public PessoaAplicacao(IRepositorioDePessoas repositorioDePessoas, IUnidadeDeTrabalho unidadeDeTrabalho, PessoaMapper pessoaMapper)
         {
             _repositorioDePessoas = repositorioDePessoas;
             _unidadeDeTrabalho = unidadeDeTrabalho;
+            _pessoaMapper = pessoaMapper;
         }
 
         public virtual IEnumerable<DtoPessoa> ListaDt0Pessoas()
         {
-            var lista = _repositorioDePessoas.Listar().Select(p => new DtoPessoa
-                {
-                    Id = p.Id,
-                    Nome = p.Nome,
-                    Sexo = (int) p.Sexo
-                });
+            var lista = _repositorioDePessoas.Listar().Select(p =>_pessoaMapper.Mapeamento(p));
             
 
             return lista;
@@ -45,12 +42,7 @@ namespace ContextoPessoa
         public virtual DtoPessoa DtoPessoa(int id)
         {
             var pessoa = _repositorioDePessoas.Obter(id);
-            var dtoPessoa = new DtoPessoa
-                {
-                    Id = pessoa.Id, 
-                    Nome = pessoa.Nome, 
-                    Sexo = (int) pessoa.Sexo
-                };
+            var dtoPessoa = _pessoaMapper.Mapeamento(pessoa);
             return dtoPessoa;
         }
 
@@ -61,12 +53,8 @@ namespace ContextoPessoa
                 throw new Exception("DtoPessoa igual a null");
             }
 
-            var pessoa = new Pessoa
-                {
-                    Id = dtoPessoa.Id,
-                    Nome = dtoPessoa.Nome,
-                    Sexo = (Sexo) dtoPessoa.Sexo
-                };
+           
+            var pessoa = _pessoaMapper.Mapeamento(dtoPessoa);
 
 
             _repositorioDePessoas.Salvar(pessoa);
@@ -77,7 +65,6 @@ namespace ContextoPessoa
         {
             _repositorioDePessoas.Deletar(id);
             _unidadeDeTrabalho.Commit();
-
         }
     }
 }

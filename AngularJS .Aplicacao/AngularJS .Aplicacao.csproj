@@ -43,8 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BindDominoDto\Base\AutoMapeamento.cs" />
+    <Compile Include="BindDominoDto\Base\IAutoMapeamento.cs" />
+    <Compile Include="BindDominoDto\PessoaMapper.cs" />
     <Compile Include="ContextoPessoa\Base\IPessoaAplicacao.cs" />
     <Compile Include="ContextoPessoa\PessoaAplicacao.cs" />
+    <Compile Include="Dtos\Base\IDto.cs" />
     <Compile Include="Dtos\DtoPessoa.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

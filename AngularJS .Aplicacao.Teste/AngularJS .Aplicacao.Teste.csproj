@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BindDominoDto.Teste\PessoaMapperTeste.cs" />
     <Compile Include="ContextoPessoa.Teste\PessoaAplicacaoTeste.Teste.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
